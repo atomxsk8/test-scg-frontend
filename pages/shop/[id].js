@@ -60,7 +60,7 @@ const Home = () => {
                     renderItem={(item, index) => (
                         <div onClick={()=> onClickBuy(item.id)}>
                             <Fade up delay={index * 50}>
-                                <Card name={item.product.name} image={item.product.imageUrl} hoverText="Buy"/>
+                                <Card name={`${item.product.name} (${item.qty})`} image={item.product.imageUrl} hoverText="Buy"/>
                             </Fade>
                         </div>
                     )}
