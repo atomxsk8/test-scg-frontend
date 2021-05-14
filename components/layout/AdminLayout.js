@@ -28,8 +28,8 @@ const menu = (
 
 const AdminLayout = ({ children }) => {
     const [collapsed, setCollapsed] = useState(false)
+    if(!router.isReady) return null
     const { data, error } = useSWR(`/v1/users/getMe`, fetcher)
-    console.log('data :>> ', data);
     if(!data) return null
     const router = useRouter()
     const path = router.pathname.split('/')
