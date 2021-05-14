@@ -15,7 +15,7 @@ const Home = () => {
     const router = useRouter()
     if(!router.isReady) return null
     const { data, error } = useSWR(`/v1/shop-products?shop=${router.query.id}&limit=1000`, fetcher)
-    
+    const { data : shop, error : shopError } = useSWR(`/v1/shops/${router.query.id}`, fetcher)
     const onClickBuy = (id) => {
         confirm({
             title: 'Would you like to buy this product?',
@@ -40,11 +40,10 @@ const Home = () => {
             trigger(`/v1/shop-products?shop=${router.query.id}&limit=1000`)
         })
     }
-
     return (
         <UserLayout>
         <>
-            <h1 style={{ fontSize:60, textAlign: 'center' }}>PRODUCT</h1>
+            <h1 style={{ fontSize:60, textAlign: 'center' }}>{`${shop?.name || ''} PRODUCT`}</h1>
             {!data && !error ? <Skeleton active/> : 
                 <div>
                 <List
