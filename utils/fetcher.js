@@ -15,10 +15,10 @@ app.interceptors.response.use(
             description: error.response.data.message
         })
         if(error.response.data.code === 401) {
-            destroyCookie({}, 'token',{ path: '/' })
-            setTimeout(() => {
-                window.location.replace("/admin/login");
-            }, 1000)
+            // destroyCookie({}, 'token',{ path: '/' })
+            // setTimeout(() => {
+            //     window.location.replace("/admin/login");
+            // }, 1000)
         }
         return Promise.reject(error.response.data || error.response.data.err)
     }
