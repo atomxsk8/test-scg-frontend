@@ -53,7 +53,7 @@ const AdminLayout = ({ children }) => {
                             </Menu.Item>
                         <Menu.Item key="shops" icon={<ShopOutlined />}>
                             <Link href="/admin/shops">
-                            Shop Management
+                            DVM Management
                             </Link>
                         </Menu.Item>
                         <Menu.Item key="products" icon={<ShoppingCartOutlined />}>
@@ -91,7 +91,7 @@ const BreadcrumbName = {
     admin: 'Admin',
     users: 'Users',
     products: 'Products',
-    shops: 'Shops',
+    shops: 'DVM',
     create: 'Create',
     "[id]": "Edit"
 }

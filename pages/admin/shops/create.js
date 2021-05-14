@@ -27,7 +27,7 @@ const Shops = () => {
     };
     return (
         <AdminLayout>
-            <Title title="Create Shop"/>
+            <Title title="Create Drinking Vending Machine"/>
             <ShopForm onFinish={onFinish} submitName="Create" loading={loading}/>
         </AdminLayout>
     )

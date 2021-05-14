@@ -9,15 +9,15 @@ const ShopForm = ({ onFinish, submitName = 'Create', loading = false, ...props }
     return (
         <Spin spinning={loading}>
             <Form {...layout} name="nest-messages" onFinish={onFinish} layout="vertical" {...props}>
-                <Form.Item name="name" label="Shop Name" rules={[{ 
+                <Form.Item name="name" label="DVM Name" rules={[{ 
                     required: true,
-                    message: 'Please enter Shop name!',
+                    message: 'Please enter DVM name!',
                 }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="imageUrl" label="Shop image url" rules={[{ 
+                <Form.Item name="imageUrl" label="DVM image url" rules={[{ 
                     required: true,
-                    message: 'Please enter Shop image url'
+                    message: 'Please enter DVM image url'
                 }]}>
                     <Input />
                 </Form.Item>

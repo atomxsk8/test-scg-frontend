@@ -14,7 +14,7 @@ const Home = () => {
     const page = 1
     const router = useRouter()
     if(!router.isReady) return null
-    const { data, error } = useSWR(`/v1/shop-products?shop=${router.query.id}`, fetcher)
+    const { data, error } = useSWR(`/v1/shop-products?shop=${router.query.id}&limit=1000`, fetcher)
     
     const onClickBuy = (id) => {
         confirm({
@@ -37,7 +37,7 @@ const Home = () => {
             }else {
                 message.error({ content: `Can't buy`, key: 'buy', duration: 2 });
             }
-            trigger(`/v1/shop-products?shop=${router.query.id}`)
+            trigger(`/v1/shop-products?shop=${router.query.id}&limit=1000`)
         })
     }
 
@@ -51,11 +51,11 @@ const Home = () => {
                     grid={{ 
                     gutter: 16,
                     xs: 1,
-                    sm: 1,
-                    md: 2,
-                    lg: 3,
-                    xl: 3,
-                    xxl: 4, 
+                    sm: 2,
+                    md: 3,
+                    lg: 4,
+                    xl: 4,
+                    xxl: 5, 
                     }}
                     dataSource={data?.results.filter(res => res.qty > 0) || []}
                     renderItem={(item, index) => (

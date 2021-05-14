@@ -35,7 +35,7 @@ const Products = () => {
     const results = pathOr([], ['results'], data)
     return (
         <AdminLayout>
-            <Title title="Shop Management" buttonName="Create Shop" buttonLink="/admin/shops/create" />
+            <Title title="Drinking Vending Machine Management" buttonName="Create DVM" buttonLink="/admin/shops/create" />
             <Table columns={columns} dataSource={results} size="middle" bordered rowKey="id" 
               loading={!data && !error}
               pagination={{ 

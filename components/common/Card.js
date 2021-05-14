@@ -9,18 +9,20 @@ const Card = ({ image, name, hoverIcon, hoverText }) => {
             <div>
                 <div className="shadow-box" style={{ 
                 borderRadius: 10, 
-                minHeight: 250, 
+                minHeight: 350, 
                 marginBottom: 10,
                 backgroundImage: `url(${image})` ,
                 backgroundPosition: 'center',
-                backgroundColor: '#e3e3e3',
+                backgroundColor: 'white',
                 position: 'relative',
                 overflow: 'hidden',
-                pointerEvents: 'none'
+                pointerEvents: 'none',
+                backgroundSize: 300,
+                backgroundRepeat: 'no-repeat'
                 }}>
                 <div className="overlay" style={{ width: '100%', height: '100%', position: 'absolute' }}/>
                 {(hoverIcon || hoverText)  && isHovered && 
-                    <div style={{ height: 250, display: 'flex', justifyContent:'center', alignItems:'center' }}>
+                    <div style={{ height: 350, display: 'flex', justifyContent:'center', alignItems:'center' }}>
                         <Fade up>
                             <Button type="primary" shape="circle" icon={hoverIcon} size="large" >{hoverText}</Button>
                         </Fade>

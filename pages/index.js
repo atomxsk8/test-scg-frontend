@@ -9,22 +9,22 @@ import Card from '../components/common/Card';
 
 const Home = () => {
   const page = 1
-  const { data, error } = useSWR(`/v1/shops`, fetcher)
+  const { data, error } = useSWR(`/v1/shops?limit=1000`, fetcher)
   return (
     <UserLayout>
       <>
-        <h1 style={{ fontSize:60, textAlign: 'center' }}>SHOP</h1>
+        <h1 style={{ fontSize:60, textAlign: 'center' }}>Drinking Vending Machine</h1>
         {!data && !error ? <Skeleton active/> : 
           <div >
             <List
               grid={{ 
                 gutter: 16,
                 xs: 1,
-                sm: 1,
-                md: 2,
-                lg: 3,
-                xl: 3,
-                xxl: 4, 
+                sm: 2,
+                md: 3,
+                lg: 4,
+                xl: 4,
+                xxl: 5, 
               }}
               dataSource={data?.results || []}
               renderItem={(item,index) => (

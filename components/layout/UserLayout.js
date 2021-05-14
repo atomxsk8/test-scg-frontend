@@ -13,7 +13,7 @@ const Home = ({children}) => {
           </a>
         </Link>
         <Link href="/admin">
-          <a>Admin ?</a>
+          <a>Admin Login</a>
         </Link>
       </Header>
       <Content style={{ padding: '30px 50px', backgroundColor: 'white' }}>
