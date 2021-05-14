@@ -1,4 +1,3 @@
-import { parseCookies, setCookie } from "nookies";
 import 'antd/dist/antd.css'
 import '../styles/globals.css'
 

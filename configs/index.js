@@ -1,5 +1,5 @@
 const Configs = {
-    HOST: 'https://test-scg-api.herokuapp.com'
+    HOST: 'https://3006e0c92137.ngrok.io'
 }
 
 export { Configs }

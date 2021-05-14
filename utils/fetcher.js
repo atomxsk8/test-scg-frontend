@@ -1,11 +1,24 @@
 import axios from 'axios'
 import { notification } from 'antd';
-import { destroyCookie } from 'nookies'
 import { Configs } from '../configs';
+
 const app = axios.create({
     baseURL: `${Configs.HOST}`,
-    withCredentials: true
+    withCredentials: true,
 })
+
+app.interceptors.request.use(
+    request => {
+        const token = localStorage.getItem('token') 
+        if(token) {
+            request.headers['Authorization'] = `Bearer ${token}`
+        }
+        return request
+    },
+    error => {
+        return Promise.reject(error)
+    }
+)
 
 app.interceptors.response.use(
     response => (response), 
@@ -15,10 +28,10 @@ app.interceptors.response.use(
             description: error.response.data.message
         })
         if(error.response.data.code === 401) {
-            // destroyCookie({}, 'token',{ path: '/' })
-            // setTimeout(() => {
-            //     window.location.replace("/admin/login");
-            // }, 1000)
+            localStorage.removeItem('token')
+            setTimeout(() => {
+                window.location.replace("/admin/login");
+            }, 1000)
         }
         return Promise.reject(error.response.data || error.response.data.err)
     }

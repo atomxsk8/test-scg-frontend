@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr';
 import Link from 'next/link'
 import fetcher from '../../utils/fetcher'
-import { destroyCookie } from 'nookies'
 import {
   UserOutlined,
   ShopOutlined,
@@ -17,7 +16,7 @@ const { Header, Sider, Content } = Layout;
 const menu = (
     <Menu>
         <Menu.Item danger onClick={() => {
-            destroyCookie(null, 'token',{ path: '/' })
+            localStorage.removeItem('token')
             window.location.replace('/admin/login')
         }}>
           Logout

@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { Form, Input, Button, Layout, Spin, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router'
-import { parseCookies, setCookie } from 'nookies'
 import { Configs } from '../../configs';
-const Login = ({ cookies }) => {
+const Login = () => {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     useEffect(()=>{
-        if(cookies && cookies.token && window) window.location.replace('/admin')
+        const token = localStorage.getItem('token')  
+        if(token && window) window.location.replace('/admin')
     },[])
     const onFinish = async (values) => {
         setLoading(true)
@@ -27,13 +27,10 @@ const Login = ({ cookies }) => {
                         description: data.message
                     })
                 }else {
-                    setCookie(null, 'token', data.tokens.access.token, {
-                        maxAge: 30 * 24 * 60 * 60,
-                        path: '/',
-                    })
-                    setTimeout(() => {
-                        router.replace('/admin')
-                    }, 1000)
+                    localStorage.setItem('token', data.tokens.access.token)  
+                    router.replace('/admin')
+                    // setTimeout(() => {
+                    // }, 1000)
                 }
                 setLoading(false)
             })
@@ -87,10 +84,6 @@ const Login = ({ cookies }) => {
             </Spin>
         </Layout>
     )
-}
-Login.getInitialProps = async (ctx) => {
-  const cookies = parseCookies(ctx);
-  return { cookies }
 }
 
 export default Login
