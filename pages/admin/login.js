@@ -31,7 +31,7 @@ const Login = ({ cookies }) => {
                         maxAge: 30 * 24 * 60 * 60,
                         path: '/',
                     })
-                    // router.replace('/admin')
+                    router.replace('/admin')
                 }
                 setLoading(false)
             })

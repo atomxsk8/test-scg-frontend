@@ -28,10 +28,10 @@ const menu = (
 
 const AdminLayout = ({ children }) => {
     const [collapsed, setCollapsed] = useState(false)
+    const router = useRouter()
     if(!router.isReady) return null
     const { data, error } = useSWR(`/v1/users/getMe`, fetcher)
     if(!data) return null
-    const router = useRouter()
     const path = router.pathname.split('/')
     return (
         <Layout style={{ minHeight: '100vh' }}>
