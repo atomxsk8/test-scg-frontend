@@ -1,0 +1,73 @@
+import { List, Modal, message } from 'antd';
+import useSWR, { mutate, trigger } from 'swr';
+import Link from 'next/link'
+import {useRouter} from 'next/router'
+import Fade from "react-reveal/Fade";
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import fetcher, { post } from '../../utils/fetcher';
+import UserLayout from '../../components/layout/UserLayout';
+import Card from '../../components/common/Card';
+
+const { confirm } = Modal;
+
+const Home = () => {
+    const page = 1
+    const router = useRouter()
+    if(!router.isReady) return null
+    const { data, error } = useSWR(`/v1/shop-products?shop=${router.query.id}`, fetcher)
+    
+    const onClickBuy = (id) => {
+        confirm({
+            title: 'Would you like to buy this product?',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Would you like to buy this product?',
+            onOk() {
+                buy(id)
+            }
+        });
+    }
+
+    const buy = async (id) => {
+        const url = `/v1/shop-products/buy/${id}`
+        mutate(url, async() => {
+            message.loading({ content: 'Loading...', key: 'buy' });
+            const resp = await post(url, { qty : 1 })
+            if(!resp.code){
+                message.success({ content: 'Success!', key: 'buy', duration: 2 });
+            }else {
+                message.error({ content: `Can't buy`, key: 'buy', duration: 2 });
+            }
+            trigger(`/v1/shop-products?shop=${router.query.id}`)
+        })
+    }
+
+    return (
+        <UserLayout>
+        <>
+            <h1 style={{ fontSize:60, textAlign: 'center' }}>PRODUCT</h1>
+            <div >
+            <List
+                grid={{ 
+                gutter: 16,
+                xs: 1,
+                sm: 1,
+                md: 2,
+                lg: 3,
+                xl: 3,
+                xxl: 4, 
+                }}
+                dataSource={data?.results.filter(res => res.qty > 0) || []}
+                renderItem={(item, index) => (
+                    <div onClick={()=> onClickBuy(item.id)}>
+                        <Fade up delay={index * 50}>
+                            <Card name={item.product.name} image={item.product.imageUrl} hoverText="Buy"/>
+                        </Fade>
+                    </div>
+                )}
+            />
+            </div>
+        </>
+        </UserLayout>
+    )
+}
+export default Home

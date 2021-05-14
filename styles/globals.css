@@ -14,3 +14,50 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.login-form {
+  width: 300px;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+}
+#components-layout-demo-top .logo {
+  float: left;
+  width: 120px;
+  height: 31px;
+  margin: 16px 24px 16px 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+.ant-row-rtl #components-layout-demo-top .logo {
+  float: right;
+  margin: 16px 0 16px 24px;
+}
+.shadow-box {
+  -webkit-box-shadow: 1px 3px 5px 0px rgba(50, 50, 50, 0.35);
+  -moz-box-shadow:    1px 3px 5px 0px rgba(50, 50, 50, 0.35);
+  box-shadow:         1px 3px 5px 0px rgba(50, 50, 50, 0.35);
+}
+
+.card:hover .shadow-box > .overlay {
+  background-color: rgba(0,0,0,.3);
+  -webkit-transition: background-color 300ms linear;
+  -ms-transition: background-color 300ms linear;
+  transition: background-color 300ms linear;
+}
+
+/* .ant-table-container {
+  border-radius: 10px;
+  overflow: hidden;
+} */
