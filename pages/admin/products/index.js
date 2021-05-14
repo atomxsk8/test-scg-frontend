@@ -37,7 +37,7 @@ const Products = () => {
         <AdminLayout>
             <Title title="Product Management" buttonName="Create Product" buttonLink="/admin/products/create" />
             <Table columns={columns} dataSource={results} size="middle" bordered rowKey="id" 
-              loading={!Boolean(results)}
+              loading={!data && !error}
               pagination={{ 
                 current: page, 
                 total: data?.totalResults || 0, 

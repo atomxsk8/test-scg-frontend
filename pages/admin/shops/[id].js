@@ -128,7 +128,7 @@ const ShopProducts = ({ shopId }) => {
         <>
             <Title title="Shop Product" button={<Button type="primary" onClick={showModal}>Add Product</Button>}/>
             <Table columns={columns} dataSource={results} size="middle" bordered rowKey="id" 
-              loading={!Boolean(results)}
+              loading={!data && !error}
               pagination={{ 
                 current: page, 
                 total: data?.totalResults || 0, 

@@ -1,4 +1,4 @@
-import { List } from 'antd';
+import { List, Skeleton } from 'antd';
 import useSWR from 'swr';
 import Link from 'next/link'
 import Fade from "react-reveal/Fade";
@@ -14,27 +14,29 @@ const Home = () => {
     <UserLayout>
       <>
         <h1 style={{ fontSize:60, textAlign: 'center' }}>SHOP</h1>
-        <div >
-          <List
-            grid={{ 
-              gutter: 16,
-              xs: 1,
-              sm: 1,
-              md: 2,
-              lg: 3,
-              xl: 3,
-              xxl: 4, 
-            }}
-            dataSource={data?.results || []}
-            renderItem={(item,index) => (
-              <Fade up delay={index * 50}>
-                <Link href={`/shop/${item.id}`}>
-                  <a><Card name={item.name} image={item.imageUrl} hoverIcon={<EyeOutlined/>}/></a>
-                </Link>
-              </Fade>
-            )}
-          />
-        </div>
+        {!data && !error ? <Skeleton active/> : 
+          <div >
+            <List
+              grid={{ 
+                gutter: 16,
+                xs: 1,
+                sm: 1,
+                md: 2,
+                lg: 3,
+                xl: 3,
+                xxl: 4, 
+              }}
+              dataSource={data?.results || []}
+              renderItem={(item,index) => (
+                <Fade up delay={index * 50}>
+                  <Link href={`/shop/${item.id}`}>
+                    <a><Card name={item.name} image={item.imageUrl} hoverIcon={<EyeOutlined/>}/></a>
+                  </Link>
+                </Fade>
+              )}
+            />
+          </div>
+        }
       </>
     </UserLayout>
   )

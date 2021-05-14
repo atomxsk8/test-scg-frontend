@@ -1,4 +1,4 @@
-import { List, Modal, message } from 'antd';
+import { List, Modal, message, Skeleton } from 'antd';
 import useSWR, { mutate, trigger } from 'swr';
 import Link from 'next/link'
 import {useRouter} from 'next/router'
@@ -45,27 +45,29 @@ const Home = () => {
         <UserLayout>
         <>
             <h1 style={{ fontSize:60, textAlign: 'center' }}>PRODUCT</h1>
-            <div >
-            <List
-                grid={{ 
-                gutter: 16,
-                xs: 1,
-                sm: 1,
-                md: 2,
-                lg: 3,
-                xl: 3,
-                xxl: 4, 
-                }}
-                dataSource={data?.results.filter(res => res.qty > 0) || []}
-                renderItem={(item, index) => (
-                    <div onClick={()=> onClickBuy(item.id)}>
-                        <Fade up delay={index * 50}>
-                            <Card name={item.product.name} image={item.product.imageUrl} hoverText="Buy"/>
-                        </Fade>
-                    </div>
-                )}
-            />
-            </div>
+            {!data && !error ? <Skeleton active/> : 
+                <div>
+                <List
+                    grid={{ 
+                    gutter: 16,
+                    xs: 1,
+                    sm: 1,
+                    md: 2,
+                    lg: 3,
+                    xl: 3,
+                    xxl: 4, 
+                    }}
+                    dataSource={data?.results.filter(res => res.qty > 0) || []}
+                    renderItem={(item, index) => (
+                        <div onClick={()=> onClickBuy(item.id)}>
+                            <Fade up delay={index * 50}>
+                                <Card name={item.product.name} image={item.product.imageUrl} hoverText="Buy"/>
+                            </Fade>
+                        </div>
+                    )}
+                />
+                </div>
+            }
         </>
         </UserLayout>
     )
