@@ -30,7 +30,6 @@ const Login = ({ cookies }) => {
                     setCookie(null, 'token', data.tokens.access.token, {
                         maxAge: 30 * 24 * 60 * 60,
                         path: '/',
-                        domain : Configs.HOST,
                     })
                     setTimeout(() => {
                         router.replace('/admin')
